@@ -1,4 +1,7 @@
 ## File and Directory Commands
+The following in a list of CLI commands that you must be familiar with for the RHCSA 9 examination. These commands were based on the video and textual course from Sander Van Vugt.
+
+## Find Command
 
 - `find /path -name filename -type f/d -exec command {}\;`: This is a find command with the -exec option that triggers a command. The `{}` are placeholders for the filenames resulting from the search.
 
@@ -155,6 +158,8 @@
 - `scp user@remote_server:/path/to/remote/file path/to/local/destination`: This command
 
 ## Docker/Podman Commands
+RHEL 9 uses podman to manage containers instead of docker. Due to its nature, these commands are interchangeable with podman. Installing docker on RHEL 9 takes a few extra steps. Given these commands will work for both podman and docker I would suggest sticking to podman. Substitute docker for podman in the following commands in RHEL9.
+
 - `docker pull imagename`: Allows for docker to pull an image from the registery.
 - `docker images`: Lists available container images to run locally. 
 - `docker run`: Execution command for docker. 
