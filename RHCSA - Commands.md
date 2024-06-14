@@ -1,5 +1,5 @@
 ## File and Directory Commands
-The following in a list of CLI commands that you must be familiar with for the RHCSA 9 examination. These commands were based on the video and textual course from Sander Van Vugt.
+The following is a list of CLI commands that you must be familiar with for the RHCSA 9 examination. These commands were based on the video and textual course from Sander Van Vugt.
 
 ## Find Command
 
