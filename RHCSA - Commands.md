@@ -1,4 +1,4 @@
-## File and Directory Commands
+## CLI commands
 The following is a list of CLI commands that you must be familiar with for the RHCSA 9 examination. These commands were based on the video and textual course from Sander Van Vugt.
 
 ## Find Command
@@ -35,6 +35,7 @@ The following is a list of CLI commands that you must be familiar with for the R
 - `passwd -u  user`: This command unlocks the password.
 - `usermod -s /sbin/nologin user`: The `-s` specifies the path of the user's new login shell. `/sbin/nologin` specifies the message that refuses login access to the user.
 - `lid -g groupname`: This command lists all members belonging to that group.
+- `echo password | passwd --sdtin user` : This command allows you to set the password of a user without using the interactive prompt.
 
 ## Chage Command
 
