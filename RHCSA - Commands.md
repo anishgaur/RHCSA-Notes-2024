@@ -141,6 +141,11 @@ The following is a list of CLI commands that you must be familiar with for the R
 - `systemctl.unit=xxx.target`: This command from the Grub 2 boot prompt allows the user to boot into a specific target.
 - `systemctl enable --now debug-shell.service`: This command enables the debug-shell to be used at boot. It can be disabled after use.
 - `systemctl --user`: This command is used to interact with systemd user instance.
+- `journalctl` : This command outputs the entire journal,
+- `journalctl -p err` : This command outputs messages with a priority of error or higher.
+- `journalctl -u servicename.service` : This command outputs the messages for the specificed service name.
+- `journalctl -b` : This command outputs the bootlog.
+- `journalctl -xb` : This command outputs the bootlog with explainations.
 
 ## Mount Command
 
@@ -158,16 +163,26 @@ The following is a list of CLI commands that you must be familiar with for the R
 - `scp /path/to/local/file user@remote_server:/path/to/destination`: This command copies a file from the local machine to the remote server.
 - `scp user@remote_server:/path/to/remote/file path/to/local/destination`: This command
 
-## Docker/Podman Commands
-RHEL 9 uses podman to manage containers instead of docker. Due to its nature, these commands are interchangeable with podman. Installing docker on RHEL 9 takes a few extra steps. Given these commands will work for both podman and docker I would suggest sticking to podman. Substitute docker for podman in the following commands in RHEL9.
+## Podman Commands
+- `podman login registery.io` : 
+- `podman pull imagename`: Allows for podman to pull an image from the registery.
 
-- `docker pull imagename`: Allows for docker to pull an image from the registery.
-- `docker images`: Lists available container images to run locally. 
-- `docker run`: Execution command for docker. 
-- `docker run -d -p hostport:containerport -v volumename:containterdirectory:Z -i -t --mount source=/location,destination=/location --name nameforthecontainer -e environmentvariables --rm true|false containerimagename` : -d allows for detached deployment, -p allows for port binding of the containers, -v allows for volume mount, --mount allow for mount bind, :Z|z sets SELinux context label, --name specifiies a custom name for the container, --rm allow for automatic removal of the container after it has finished execution running, -i allows for an interactive container and -t allows for a virtual console and -e allows for passing certain environment variables like passwords to be passed the container.
-- `docker attach containername` : Allows to jump back in the container once it is running. 
-- `docker start containername`: This commands starts a container that is already loaded in or stopped. 
-- `docker stop containtername`: This command stops a running container. 
-- `docker ps -a`: This command shows a list of running containers. -a displays all containers, even the stopped ones.
-- `docker rm containername`: This command removes a stopped container.
-- `docker volume create`: This command creates a volume specifically for container use.
+- `podman images`: Lists available container images to run locally. 
+
+- `podman run`: Execution command for podman. 
+- `podman run -d -p hostport:containerport -v volumename:containterdirectory:Z -i -t --mount source=/location,destination=/location --name nameforthecontainer -e environmentvariables --rm true|false containerimagename` : -d allows for detached deployment, -p allows for port binding of the containers, -v allows for volume mount, --mount allow for mount bind, :Z|z sets SELinux context label, --name specifiies a custom name for the container, --rm allow for automatic removal of the container after it has finished execution running, -i allows for an interactive container and -t allows for a virtual console and -e allows for passing certain environment variables like passwords to be passed the container.
+
+- `podman attach containername` : Allows to jump back in the container once it is running. 
+
+- `podman start containername`: This commands starts a container that is already loaded in or stopped. 
+- `podman stop containtername`: This command stops a running container. 
+
+- `podman ps -a`: This command shows a list of running containers. -a displays all containers, even the stopped ones.
+- `podman rm containername`: This command removes a stopped container.
+
+- `podman volume create`: This command creates a volume specifically for container use.
+
+- `podman unshare chown user:group dicectoryname` : 
+- `podman unshare generate systemd --now containtername --files --new` :
+- `podman exec containername` : Outputs the name of the user currently running the container.
+- 
