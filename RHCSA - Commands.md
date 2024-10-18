@@ -1,188 +1,262 @@
-## CLI commands
+## CLI Commands
 The following is a list of CLI commands that you must be familiar with for the RHCSA 9 examination. These commands were based on the video and textual course from Sander Van Vugt.
+
+## Set Password with Echo Command
+
+- `echo password | passwd --stdin user`: This command allows you to set the password of a user without using the interactive prompt.
+
+## Word Count Command
+
+- `wc -l`: Counts the number of lines in a file.
+
+## Man and Search Commands
+
+- `man -k searchterm`: This command gives a list of possible matches in the manual along with the section that the information is in. Equivalent to `apropos`.
 
 ## Find Command
 
-- `find /path -name filename -type f/d -exec command {}\;`: This is a find command with the -exec option that triggers a command. The `{}` are placeholders for the filenames resulting from the search.
+- `find /path -name filename -type f/d -exec command {}\;`: This is a `find` command with the `-exec` option that triggers a command. The `{}` are placeholders for the filenames resulting from the search.
 
 ## Tar Commands
 
-- `tar cvf /archive.tar /targetstoarchive`: This command compresses files.
-- `tar xvf /archive.tar /extraction/path`: This command extracts files from the archive.
-- `tar tvf /archive.tar`: This command allows you to view the contents of the archive.
-- `tar rvf`: This command appends new files to a preexisting archive.
-- `tar cvfz /archive.gz /targetstoarchive`: This command uses gzip compression.
-- `tar cvfJ /archive.xz /targetstoarchive`: This command uses xz compression.
-- `tar cvfj /archive.bz2 /targetstoarchive`: This command uses bzip2 compression.
+- `tar cvf /archive.tar /targetstoarchive`: Compresses files.
+- `tar xvf /archive.tar /extraction/path`: Extracts files from the archive.
+- `tar tvf /archive.tar`: Views the contents of the archive.
+- `tar rvf /archive.tar /newfiles`: Appends new files to a preexisting archive.
+- `tar cvfz /archive.gz /targetstoarchive`: Compresses using gzip compression.
+- `tar cvfJ /archive.xz /targetstoarchive`: Compresses using xz compression.
+- `tar cvfj /archive.bz2 /targetstoarchive`: Compresses using bzip2 compression.
 
 ## Awk Command
 
-- `awk -F : '{command}' file`: The `-F` is used for specifying the field separator. For example, `awk -F : '{print$1, $3}' file.txt` prints out the first and third column in file.txt. It uses `:` as a field separator for recognizing different columns in the file. Without specifying `:` as the field separator, it will use a space to determine columns.
+- `awk -F : '{command}' file`: The `-F` specifies the field separator. For example, `awk -F : '{print $1, $3}' file.txt` prints the first and third columns in file.txt. The `:` is used as a field separator. Without specifying a field separator, it will use a space by default.
 
 ## Sed Commands
 
-- `sed -i s/searchterm/replacement/g file`: This command is used to replace a specific term in a file. The `-i` makes certain that the changes are written to the file immediately. The `g` specifies that the changes need to be applied to all instances of the search term.
-- `sed -i '10d' file`: This command is used to delete the 10th line in a file. The `-i` functions the same as the statement above.
+- `sed -i s/searchterm/replacement/g file`: Replaces a specific term in a file. The `-i` writes changes to the file immediately, and `g` applies the change to all instances of the search term.
+- `sed -i '10d' file`: Deletes the 10th line in a file.
 
 ## User and Group Commands
 
-- `useradd <username> -s /sbin/nologin`: This command adds a user to the system. The `-s` sets the login shell. `/sbin/nologin` sets the shell so that no login might take place.
-- `usermod -aG groupname user`: This command adds the user to the group `groupname` as a secondary group. The `-a` appends instead of replacing the secondary group.
-- `usermod -L user`: This command locks the user.
-- `usermod -U user`: This command unlocks the user.
-- `usermod -e user`: This command sets the account expiration date.
-- `passwd -l user`: This command locks the password.
-- `passwd -u  user`: This command unlocks the password.
-- `usermod -s /sbin/nologin user`: The `-s` specifies the path of the user's new login shell. `/sbin/nologin` specifies the message that refuses login access to the user.
-- `lid -g groupname`: This command lists all members belonging to that group.
-- `echo password | passwd --sdtin user` : This command allows you to set the password of a user without using the interactive prompt.
+- `useradd <username> -s /sbin/nologin`: Adds a user to the system. The `-s` sets the login shell to `/sbin/nologin`, preventing login.
+- `usermod -aG groupname user`: Adds the user to the `groupname` as a secondary group. The `-a` appends rather than replacing secondary groups.
+- `usermod -L user`: Locks the user account.
+- `usermod -U user`: Unlocks the user account.
+- `usermod -e <date> user`: Sets the account expiration date for the user.
+- `passwd -l user`: Locks the user’s password.
+- `passwd -u user`: Unlocks the user’s password.
+- `usermod -s /sbin/nologin user`: Changes the user’s login shell to `/sbin/nologin`, preventing login.
+- `lid -g groupname`: Lists all members of a group.
 
 ## Chage Command
 
-- `chage user`: This command changes user password properties such as minimum time before password change, maximum age of a password, and password expiration.
+- `chage user`: Changes user password properties, such as the minimum and maximum time before a password change, and password expiration.
 
 ## Chmod Commands
 
-- `chmod g+s .`: This command applies setgid permission on a directory allowing the ones that are created in it to inherit group ownership.
-- `chmod +t .`: This command applies sticky bit to a file or a directory.
+- `chmod g+s .`: Applies `setgid` permission on a directory, allowing new files created in the directory to inherit group ownership.
+- `chmod +t .`: Applies a sticky bit to a file or directory.
 
-## Hostnamectl Command
+## Hostname Command
 
-- `hostnamectl set-hostname`: This command changes the host name. It can be changed through the editing of the `/etc/hostname` file or through the `nmtui` command.
+- `hostnamectl set-hostname <hostname>`: Changes the system’s hostname. Can also be changed by editing `/etc/hostname` or through the `nmtui` command.
 
 ## Nmcli Commands
 
-- `nmcli`: This command is a network manager command line interface.
-- `nmcli connection up connectionname`: This command reestablishes connection.
+- `nmcli`: Opens the NetworkManager command-line interface.
+- `nmcli connection up <connectionname>`: Re-establishes the specified connection.
 
 ## Ss Commands
 
-- `ss -tu`: This command shows TCP packets.
-- `ss -tuna`: This command shows UDP packets.
-- `ss -tunap`: This command does not resolve service names. It displays all sockets and shows the process using sockets.
+- `ss -tu`: Shows TCP packets.
+- `ss -tuna`: Shows both TCP and UDP packets.
+- `ss -tunap`: Shows all sockets without resolving service names, including processes using the sockets.
 
 ## Rpm Commands
 
-- `rpm -qa`: This command shows all installed packages.
-- `rpm -qf filename`: This command shows from which package `filename` was installed.
-- `rpm -ql packagename`: This command lists all files from a package.
-- `rpm -q --scripts packagename`: This command shows scripts executed while installing a package.
-- `rpm -q --changelog package`: This command shows the changelog for a package.
+- `rpm -qa`: Lists all installed packages.
+- `rpm -qf filename`: Displays which package installed the specified file.
+- `rpm -ql packagename`: Lists all files from the specified package.
+- `rpm -q --scripts packagename`: Shows the scripts executed during the installation of the specified package.
+- `rpm -q --changelog packagename`: Shows the changelog for the specified package.
 
 ## Rpm2cpio Commands
 
-- `rpm2cpio packagename.rpm | cpio -idmv`: This command converts the RPM package into a CPIO data stream. The `-idmv` will list the files in the package while they are being extracted to the current directory.
-- `rpm2cpio packagename.rpm | cpio -tv`: This command lists the contents of a package without extracting them.
+- `rpm2cpio packagename.rpm | cpio -idmv`: Converts the RPM package to a CPIO data stream, listing files while extracting them to the current directory.
+- `rpm2cpio packagename.rpm | cpio -tv`: Lists the contents of a package without extracting it.
 
 ## Dnf Commands
 
-- `dnf config-manager --enable reponame`: This command is used to enable a specific repository.
-- `dnf config-manager --add-repo=file:///path/to/repo`: This command is used to add a 3rd party repo.
-- `dnf list`: This command lists all packages.
-- `dnf list searchterm`: This command lists all packages that match `searchterm`.
-- `dnf search`: This command searches in names and memory.
-- `dnf search all`: This command includes searching in description.
-- `dnf provides */searchterm`: This command searches in package file list for the package.
-- `dnf info`: This command provides information about a package.
-- `dnf install`: This command installs a package.
-- `dnf remove`: This command removes a package.
-- `dnf update`: This command updates a package.
-- `dnf repoquery`: This command queries a package in a repository.
-- `dnf download`: This command downloads a package.
-- `dnf history`: This command gives an overview of dnf activity.
-- `dnf history undo x`: This command reverses an action.
+- `dnf config-manager --enable reponame`: Enables a specific repository.
+- `dnf config-manager --add-repo=file:///path/to/repo`: Adds a third-party repository.
+- `dnf list`: Lists all installed packages.
+- `dnf list searchterm`: Lists all packages matching the search term.
+- `dnf search`: Searches package names and metadata.
+- `dnf search all`: Searches names and descriptions.
+- `dnf provides */searchterm`: Searches for the package containing the specified file.
+- `dnf info`: Displays information about the specified package.
+- `dnf install packagename`: Installs the specified package.
+- `dnf remove packagename`: Removes the specified package.
+- `dnf update`: Updates all installed packages.
+- `dnf repoquery`: Queries information from enabled repositories.
+- `dnf download`: Downloads the specified package.
+- `dnf history`: Displays a history of DNF transactions.
+- `dnf history undo x`: Reverses a specified transaction.
 
 ## Lscpu Command
 
-- `lscpu`: This command gives information regarding the CPU.
+- `lscpu`: Displays CPU architecture information.
 
 ## Uptime Command
 
-- `uptime`: This command checks CPU usage.
+- `uptime`: Displays system uptime and load average.
 
 ## Nice and Renice Commands
 
-- `nice -n <priority> -p <PID>`: This command sets the priority of a process.
-- `renice -n <priority> -p <PID>`: This command changes the priority of a process.
+- `nice -n <priority> -p <PID>`: Sets the priority of a process.
+- `renice -n <priority> -p <PID>`: Changes the priority of a process.
 
 ## Kill Command
 
-- `kill -SIGCHLD <pidoftheparentprocess>`: This command sends a signal to the parent process to remove a zombie process.
+- `kill -SIGCHLD <pid>`: Sends a signal to the parent process to remove a zombie process.
 
 ## Tuned-adm Commands
 
-- `tuned-adm list`: This command presents a list of all the profiles available.
-- `tuned-adm profile profilename`: This command instructs tuned to apply a new profile.
+- `tuned-adm list`: Lists all available tuned profiles.
+- `tuned-adm profile <profilename>`: Applies the specified tuned profile.
 
 ## Loginctl Commands
 
-- `loginctl list-users`: This command gives a list of active users.
-- `loginctl list-sessions`: This command gives a list of active sessions along with the users.
-- `loginctl terminate-session`: This command terminates a specific user session.
-- `loginctl terminate-user`: This command ends all user sessions of that particular user.
-- `loginctl user-status username`: This command gives the user's status.
+- `loginctl list-users`: Lists all active users.
+- `loginctl list-sessions`: Lists all active sessions with associated users.
+- `loginctl terminate-session <id>`: Terminates a specific session.
+- `loginctl terminate-user <user>`: Terminates all sessions of a specific user.
+- `loginctl user-status <username>`: Displays the status of the specified user.
 
 ## Systemctl Commands
 
-- `systemctl list-units`: This command is used to display a list of all active units that systemd currently knows about.
-- `systemctl list-unit -t timer`: This command lists units of a particular type.
-- `systemctl list-unit-files`: This command lists installed unit files.
-- `systemctl status servicename`: This command shows the status of a service.
-- `systemctl start servicename`: This command starts a service.
-- `systemctl stop servicename`: This command stops a service.
-- `systemctl enable servicename`: This command enables a service.
-- `systemctl disable servicename`: This command disables a service.
-- `systemctl reload servicename`: This command reloads a service.
-- `systemctl restart systemd-journald-flush`: This command reloads the new systemd-journal parameters.
-- `systemctl unit-dependencies servicename`: This command lists all dependencies of any services.
-- `systemctl isolate xyz.target`: This command switches to the targeted interface.
-- `systemctl get-default`: This command shows the current default target.
-- `systemctl set-default`: This command changes the current default target.
-- `systemctl.unit=xxx.target`: This command from the Grub 2 boot prompt allows the user to boot into a specific target.
-- `systemctl enable --now debug-shell.service`: This command enables the debug-shell to be used at boot. It can be disabled after use.
-- `systemctl --user`: This command is used to interact with systemd user instance.
-- `journalctl` : This command outputs the entire journal,
-- `journalctl -p err` : This command outputs messages with a priority of error or higher.
-- `journalctl -u servicename.service` : This command outputs the messages for the specificed service name.
-- `journalctl -b` : This command outputs the bootlog.
-- `journalctl -xb` : This command outputs the bootlog with explainations.
+- `systemctl list-units`: Lists all active units that `systemd` knows about.
+- `systemctl list-unit-files`: Lists all installed unit files.
+- `systemctl list-unit -t timer`: Lists all units of type "timer."
+- `systemctl status <servicename>`: Displays the status of the specified service.
+- `systemctl start <servicename>`: Starts the specified service.
+- `systemctl stop <servicename>`: Stops the specified service.
+- `systemctl enable <servicename>`: Enables the specified service to start at boot.
+- `systemctl disable <servicename>`: Disables the specified service from starting at boot.
+- `systemctl reload <servicename>`: Reloads the specified service’s configuration.
+- `systemctl restart systemd-journald-flush`: Reloads the new `systemd-journal` parameters.
+- `systemctl unit-dependencies <servicename>`: Lists all dependencies of a specific service.
+- `systemctl isolate <target>`: Switches to the specified target.
+- `systemctl get-default`: Displays the current default target.
+- `systemctl set-default <target>`: Sets the default target.
+- `systemctl enable --now debug-shell.service`: Enables and starts the debug shell, available with `Ctrl + Alt + F9`.
 
-## Mount Command
+## Journalctl Commands
 
-- `mount -o remount,rw /`: The `-o` specifies mounting options. `remount,rw /` mounts the root file system as read-write.
+- `journalctl`: Displays the systemd journal.
+- `journalctl -u <servicename>`: Displays the logs for a specific service.
+- `journalctl -p err`: Displays only logs with a priority of error.
+- `journalctl -b`: Displays the boot log.
+- `journalctl -xb`: Displays boot log with explanations.
 
-## Ssh Commands
+## Timedatectl Commands
 
-- `ssh-keygen`: This command generates a public/private key pair.
-- `ssh-copy-id <targetip>`: This command copies the private key over to the target server. The format can be `username@targetip`.
-- `ssh -X`: This command enables X forwarding.
-- `ssh -Y`: This command enables trusted X forwarding.
+- `timedatectl`: Prints system time and date information.
+- `timedatectl status`: Shows the current system time, date, and time zone.
+- `timedatectl set-time <time>`: Sets the system clock.
+- `timedatectl set-timezone <timezone>`: Sets the system timezone.
+- `timedatectl set-ntp <boolean>`: Enables or disables network time synchronization.
 
-## Scp Commands
+## Disk Management Commands
 
-- `scp /path/to/local/file user@remote_server:/path/to/destination`: This command copies a file from the local machine to the remote server.
-- `scp user@remote_server:/path/to/remote/file path/to/local/destination`: This command
+- `lsblk`: Lists all block devices.
+- `lsblk -f`: Lists block devices and their filesystems.
+- `fdisk -l`: Lists disk partitions.
+- `fdisk /dev/<device>`: Opens the disk for partitioning using `fdisk`.
+
+## Filesystem Commands
+
+- `mkfs.<filesystem> /dev/<partition>`: Creates a filesystem on the specified partition.
+- `mount /dev/<partition> /mnt`: Mounts the specified partition at `/mnt`.
+- `mount -a`: Mounts all filesystems defined in `/etc/fstab`.
+- `blkid`: Displays UUID and label information of all block devices.
+- `findmnt --verify`: Verifies `/etc/fstab` syntax.
+
+## Fdisk Commands
+
+- `fdisk devicename`: Opens the disk management utility.
+  - `m`: Opens help in `fdisk`.
+  - `n`: Creates a new partition.
+  - `p`: Prints partition information.
+  - `w`: Writes changes to the disk.
+  - `t`: Sets the partition type.
+
+  ## Tune2fs Command
+
+- `tune2fs -L <label> /device`: Sets the label on a device with an ext filesystem.
+
+## Xfs_admin Command
+
+- `xfs_admin -L <label> /device`: Sets the label on an XFS filesystem.
+
+## Gdisk Commands
+
+- `gdisk`: Opens the GPT disk management utility.
+  - `?`: Opens help in `gdisk`.
+  - `n`: Creates a new GPT partition.
+
+## Swapoff Command
+
+- `swapoff /dev/partition`: Disables the swap on the specified partition.
+
+## Swap Management Commands
+
+- `mkswap /dev/<partition>`: Sets up the specified partition as swap space.
+- `swapon /dev/<partition>`: Enables the specified swap partition.
+
+## LVM Commands
+
+- `pvcreate /dev/<partition>`: Initializes the partition as a physical volume for LVM.
+- `vgcreate <groupname> /dev/<partition>`: Creates a volume group with the specified partition.
+- `lvcreate -L <size> -n <lvname> <groupname>`: Creates a logical volume in the specified volume group.
+- `lvresize -L +<size> /dev/<vgname>/<lvname>`: Resizes a logical volume.
+- `vgextend <vgname> /dev/<partition>`: Extends the volume group by adding a new partition.
+- `vgreduce <vgname> /dev/<partition>`: Removes a partition from the volume group.
+- `lvextend -L +<size> /dev/<vgname>/<lvname>`: Extends the size of the logical volume.
+- `lvreduce -L -<size> /dev/<vgname>/<lvname>`: Reduces the size of the logical volume.
+- `pvmove /dev/<source> /dev/<target>`: Moves data from one partition to another.
+
+## Grub Commands
+
+- `grub2-mkconfig -o /boot/grub2/grub.cfg`: Generates the GRUB2 configuration file.
+
+## SELinux Commands
+
+- `getenforce`: Displays the current SELinux mode.
+- `setenforce <mode>`: Sets the SELinux mode to `enforcing` or `permissive`.
+- `semanage fcontext -a -t <context> <file>`: Adds a context rule for the specified file.
+- `restorecon -Rv <directory>`: Restores SELinux context on a directory recursively.
+- `semanage port -l`: Lists port context rules.
+- `setsebool -P <boolean> on/off`: Enables or disables a specific SELinux boolean value persistently.
+
+## Firewall-cmd Commands
+
+- `firewall-cmd --list-all`: Lists all active firewall settings.
+- `firewall-cmd --get-services`: Lists all predefined services.
+- `firewall-cmd --add-service <service> --permanent`: Adds the specified service to the active firewall rules.
 
 ## Podman Commands
-- `podman login registery.io` : 
-- `podman pull imagename`: Allows for podman to pull an image from the registery.
 
-- `podman images`: Lists available container images to run locally. 
-
-- `podman run`: Execution command for podman. 
-- `podman run -d -p hostport:containerport -v volumename:containterdirectory:Z -i -t --mount source=/location,destination=/location --name nameforthecontainer -e environmentvariables --rm true|false containerimagename` : -d allows for detached deployment, -p allows for port binding of the containers, -v allows for volume mount, --mount allow for mount bind, :Z|z sets SELinux context label, --name specifiies a custom name for the container, --rm allow for automatic removal of the container after it has finished execution running, -i allows for an interactive container and -t allows for a virtual console and -e allows for passing certain environment variables like passwords to be passed the container.
-
-- `podman attach containername` : Allows to jump back in the container once it is running. 
-
-- `podman start containername`: This commands starts a container that is already loaded in or stopped. 
-- `podman stop containtername`: This command stops a running container. 
-
-- `podman ps -a`: This command shows a list of running containers. -a displays all containers, even the stopped ones.
-- `podman rm containername`: This command removes a stopped container.
-
-- `podman volume create`: This command creates a volume specifically for container use.
-
-- `podman unshare chown user:group dicectoryname` : 
-- `podman unshare generate systemd --now containtername --files --new` :
-- `podman exec containername` : Outputs the name of the user currently running the container.
-- 
+- `podman run <options> <image> <command>`: Runs a container from an image with specified options.
+- `podman ps`: Lists running containers.
+- `podman ps -a`: Lists all containers, including stopped ones.
+- `podman stop <container>`: Stops the specified container.
+- `podman rm <container>`: Removes the specified container.
+- `podman pull <image>`: Pulls the specified image from the registry.
+- `podman exec <container> <command>`: Executes a command in a running container.
+- `podman logs <container>`: Displays logs of the specified container.
+- `podman images`: Lists all images stored locally.
+- `skopeo inspect docker://<image>`: Inspects a container image without downloading it.
+- `podman unshare`: Runs a command in a new user namespace.
+  - `chown nn:nn directoryname`: Changes ownership of a directory in the namespace.
+  - `generate systemd --now <container> --files --new`: Generates systemd unit files for the container.
